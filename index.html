@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evermore Stories | Wedding photography and film</title>
+  <meta name="description" content="Evermore Stories is an Australian wedding photography and film company. Your moments, your stories, beautifully told, forever.">
+  <meta name="theme-color" content="#3B1119">
+
+  <!-- Social sharing preview -->
+  <meta property="og:title" content="Evermore Stories">
+  <meta property="og:description" content="Luxury wedding photography and film in Australia. Our new website is coming soon.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --claret: #3B1119;       /* page background */
+      --claret-deep: #2A0A10;  /* shadow edge */
+      --claret-lift: #4E1A24;  /* arch inner edge */
+      --ivory: #F4ECE4;        /* primary text */
+      --blush: #E7C3BC;        /* soft light */
+      --champagne: #D8BC8E;    /* gold accents */
+      --muted: #C9AFA9;        /* secondary text */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background:
+        radial-gradient(120% 90% at 20% 10%, #4A1520 0%, var(--claret) 45%, var(--claret-deep) 100%);
+      background-color: var(--claret);
+      color: var(--ivory);
+      font-family: "Jost", system-ui, sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 7vh, 5rem) clamp(1.25rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      align-items: center;
+      gap: clamp(2.5rem, 7vw, 6.5rem);
+    }
+
+    /* The arch: a cathedral window of soft, moving light */
+    .arch {
+      position: relative;
+      width: 100%;
+      max-width: 26rem;
+      aspect-ratio: 3 / 4.4;
+      justify-self: end;
+      border-radius: 999px 999px 4px 4px;
+      overflow: hidden;
+      background:
+        radial-gradient(80% 60% at 70% 18%, rgba(244, 222, 205, .95) 0%, rgba(231, 195, 188, .55) 35%, transparent 70%),
+        radial-gradient(90% 70% at 25% 85%, rgba(216, 188, 142, .45) 0%, transparent 65%),
+        linear-gradient(170deg, #C98F8C 0%, #8E4450 45%, var(--claret-lift) 100%);
+      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .55);
+      animation: rise 2.2s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .arch::before {
+      /* slow drifting glow, like light through a window at golden hour */
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(35% 30% at 50% 50%, rgba(255, 240, 225, .55), transparent 70%);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .arch::after {
+      /* fine champagne inner border */
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(244, 236, 228, .45);
+      border-radius: 999px 999px 2px 2px;
+      pointer-events: none;
+    }
+    .arch canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Silver dollar eucalyptus sprig, drawn in fine line on load */
+    .sprig {
+      position: absolute;
+      left: 50%;
+      bottom: 8%;
+      transform: translateX(-46%) rotate(-8deg);
+      width: clamp(8rem, 11vw, 11rem);
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 1px 8px rgba(59, 17, 25, .25));
+    }
+    .sprig * {
+      fill: none;
+      stroke: var(--ivory);
+      stroke-width: .7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 2.2s ease-in-out forwards;
+    }
+    .sprig .vein { stroke-width: .5; opacity: .65; }
+    .sprig .stem { animation-duration: 2.6s; animation-delay: .9s; }
+    .sprig .l1 { animation-delay: 1.5s; }
+    .sprig .l2 { animation-delay: 1.75s; }
+    .sprig .l3 { animation-delay: 2s; }
+    .sprig .l4 { animation-delay: 2.25s; }
+    .sprig .l5 { animation-delay: 2.5s; }
+    .sprig .l6 { animation-delay: 2.75s; }
+    .sprig .l7 { animation-delay: 3s; }
+
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drift {
+      from { transform: translate(-12%, -8%); }
+      to   { transform: translate(14%, 18%); }
+    }
+
+    /* Text column */
+    .copy { max-width: 32rem; }
+
+    .script {
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+      line-height: 1;
+      color: var(--champagne);
+      animation: fade 1.6s ease .6s both;
+    }
+
+    h1 {
+      margin-top: .35rem;
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 7.4vw, 5.6rem);
+      line-height: .98;
+      letter-spacing: -.015em;
+      animation: fade 1.8s ease .4s both;
+    }
+    h1 span { display: block; }
+
+    .rule {
+      width: 4.5rem;
+      height: 1px;
+      background: var(--champagne);
+      margin: clamp(1.75rem, 4vh, 2.5rem) 0;
+      animation: fade 1.6s ease .9s both;
+    }
+
+    .tagline {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      line-height: 1.55;
+      color: var(--blush);
+      animation: fade 1.6s ease 1s both;
+    }
+
+    .message {
+      margin-top: 1.25rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 27rem;
+      animation: fade 1.6s ease 1.15s both;
+    }
+
+    .links {
+      margin-top: clamp(2rem, 5vh, 2.75rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem 2.25rem;
+      animation: fade 1.6s ease 1.3s both;
+    }
+    .enquire {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 1px solid var(--champagne);
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      transition: background-color .4s, color .4s;
+    }
+    .enquire:hover { background: var(--champagne); color: var(--claret-deep); }
+    .social {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .78rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      padding-bottom: .35rem;
+      border-bottom: 1px solid rgba(201, 175, 169, .35);
+      transition: color .4s, border-color .4s;
+    }
+    .social:hover { color: var(--ivory); border-color: var(--champagne); }
+    a:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+
+    footer {
+      padding: 1.25rem clamp(1.25rem, 5vw, 4rem) 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem 1.5rem;
+      max-width: 72rem;
+      width: 100%;
+      margin: 0 auto;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: rgba(201, 175, 169, .75);
+      animation: fade 1.6s ease 1.5s both;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Phone and small tablet: arch on top, text centred below */
+    @media (max-width: 760px) {
+      main {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.75rem;
+        padding-top: 2.25rem;
+      }
+      .arch { justify-self: center; max-width: 15rem; }
+      .sprig { width: 6.5rem; }
+      .copy { margin: 0 auto; }
+      .rule { margin-left: auto; margin-right: auto; }
+      .message { margin-left: auto; margin-right: auto; }
+      .links { justify-content: center; flex-direction: column; }
+      footer { justify-content: center; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before { animation: none !important; transition: none !important; }
+      .sprig * { stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="arch" aria-hidden="true">
+      <canvas id="light"></canvas>
+      <svg class="sprig" viewBox="0 0 120 165" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" pathLength="1" d="M50 160 C47 128, 56 100, 52.5 70 S 49 34, 54.5 13"/>
+        <path class="stem" pathLength="1" d="M52.5 82 C 66 74, 82 70, 92 58"/>
+        <ellipse class="l3" pathLength="1" cx="98" cy="50" rx="7" ry="6" transform="rotate(-35 98 50)"/>
+        <ellipse class="l1" pathLength="1" cx="35" cy="131" rx="12.9" ry="10.3" transform="rotate(-28 35 131)"/>
+        <path class="l1 vein" pathLength="1" d="M47.2 131 Q 35.0 129.0, 31.8 127.5"/>
+        <ellipse class="l2" pathLength="1" cx="65" cy="112" rx="11.8" ry="9.5" transform="rotate(28 65 112)"/>
+        <path class="l2 vein" pathLength="1" d="M53.8 112 Q 65.0 110.0, 67.9 108.5"/>
+        <ellipse class="l3" pathLength="1" cx="39" cy="90" rx="11.2" ry="9.0" transform="rotate(-28 39 90)"/>
+        <path class="l3 vein" pathLength="1" d="M49.6 90 Q 39.0 88.0, 36.2 86.5"/>
+        <ellipse class="l4" pathLength="1" cx="64" cy="70" rx="10.1" ry="8.1" transform="rotate(28 64 70)"/>
+        <path class="l4 vein" pathLength="1" d="M54.4 70 Q 64.0 68.0, 66.5 66.5"/>
+        <ellipse class="l5" pathLength="1" cx="40" cy="50" rx="9.0" ry="7.2" transform="rotate(-28 40 50)"/>
+        <path class="l5 vein" pathLength="1" d="M48.5 50 Q 40.0 48.0, 37.8 46.5"/>
+        <ellipse class="l6" pathLength="1" cx="61" cy="31" rx="7.3" ry="5.9" transform="rotate(28 61 31)"/>
+        <path class="l6 vein" pathLength="1" d="M54.1 31 Q 61.0 29.0, 62.8 27.5"/>
+        <ellipse class="l7" pathLength="1" cx="58" cy="8" rx="5.2" ry="4.1" transform="rotate(28 58 8)"/>
+      </svg>
+    </div>
+
+    <div class="copy">
+      <p class="script">Coming soon</p>
+      <h1><span>Evermore</span><span>Stories</span></h1>
+
+      <div class="rule" aria-hidden="true"></div>
+
+      <p class="tagline">Your moments, your stories, beautifully told, forever.</p>
+      <p class="message">
+        Wedding photography and film across Australia. Our new home is being
+        crafted with the same care we bring to every wedding. Until then,
+        we'd love to hear about your day.
+      </p>
+
+      <div class="links">
+        
+        <a class="enquire" href="mailto:evermorestoriesau@gmail.com?subject=Wedding%20enquiry">Enquire about your date</a>
+        <a class="social" href="https://www.instagram.com/evermorestories.au/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>&copy; <span id="year">2026</span> Evermore Stories</span>
+    <span>Australia</span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Soft floating motes of light inside the arch
+    (function () {
+      var canvas = document.getElementById("light");
+      if (!canvas || !canvas.getContext) return;
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var ctx = canvas.getContext("2d");
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w, h, motes = [];
+
+      function size() {
+        var r = canvas.getBoundingClientRect();
+        w = r.width; h = r.height;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function make() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + .4,
+          vy: -(Math.random() * .18 + .05),
+          vx: (Math.random() - .5) * .08,
+          a: Math.random() * .5 + .2,
+          t: Math.random() * Math.PI * 2
+        };
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < motes.length; i++) {
+          var m = motes[i];
+          m.t += .01;
+          m.x += m.vx + Math.sin(m.t) * .05;
+          m.y += m.vy;
+          if (m.y < -5) { m.y = h + 5; m.x = Math.random() * w; }
+          var g = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.r * 4);
+          var alpha = m.a * (.6 + .4 * Math.sin(m.t * 2));
+          g.addColorStop(0, "rgba(255, 244, 230," + alpha + ")");
+          g.addColorStop(1, "rgba(255, 244, 230, 0)");
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.r * 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        if (!reduce) requestAnimationFrame(draw);
+      }
+
+      size();
+      for (var i = 0; i < 46; i++) motes.push(make());
+      window.addEventListener("resize", size);
+      draw();
+    })();
+  </script>
+</body>
+</html>
